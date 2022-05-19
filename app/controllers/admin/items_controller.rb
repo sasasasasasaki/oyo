@@ -1,5 +1,15 @@
 class Admin::ItemsController < ApplicationController
+
+  def create
+    @item = Item.new(item_params)
+    @item.save
+    redirect_to admin_item_path(@item.id)
+  end
+
   def index
+    @item = Item.new
+    @items = Item.all.page(params[:page]).per(5)
+
   end
 
   def new
@@ -7,23 +17,34 @@ class Admin::ItemsController < ApplicationController
     @genres = Genre.all
 
   end
-  
-  def create
-    @item = Item.new(item_params)
-    @item.save
-    redirect_to new_admin_item_path
-  end
+
+
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
+    @genres = Genre.all
+    @item = Item.find(params[:id])
   end
 
+  def update
+    @genres = Genre.all
+    @item = Item.find(params[:id])
+
+    if @item.update(item_params)
+    redirect_to admin_item_path(@item.id)
+    flash[:alert] = "編集完了"
+
+    else
+      render :edit
+    end
+  end
 
 private
 
-  def genre_params
-    params.require(:item).permit(:name,:introduction,:image,:name,:price,:genre_id)
+  def item_params
+    params.require(:item).permit(:name,:introduction,:image,:price,:genre_id,:page)
   end
 end
