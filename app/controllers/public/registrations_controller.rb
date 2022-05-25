@@ -59,4 +59,8 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :last_name_kana, :email, :first_name, :first_name_kana, :postal_code, :address, :telephone_number])
+  end
 end

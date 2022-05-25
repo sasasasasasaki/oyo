@@ -1,2 +1,58 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<div class="container">
+
+<%=   flash[:alert]  %>
+
+<h1>マイページ</h1>
+<h3>登録情報</h3>
+<%= link_to edit_public_customer_path(@customer.id), class: "btn btn-success" do %>編集する
+<% end %>
+<table>
+  <tr>
+    <th>氏名</th>
+    <td><%= @customer.first_name %></td>
+    <td><%= @customer.last_name %></td>
+  </tr>
+  
+  <tr>
+    <th>カナ</th>
+    <td><%= @customer.first_name_kana %></td>
+    <td><%= @customer.last_name_kana %></td>
+  </tr>
+  
+  <tr>
+    <th>郵便番号</th>
+    <td><%= @customer.postal_code %></td>
+  </tr>
+  
+  <tr>
+    <th>郵便番号</th>
+    <td><%= @customer.address %></td>
+  </tr>
+  
+  <tr>
+    <th>電話番号</th>
+    <td><%= @customer.telephone_number %></td>
+  </tr>
+  
+  <tr>
+    <th>メールアドレス</th>
+    <td><%= @customer.email %></td>
+  </tr>
+
+</table>
+
+<table>
+  <tr>
+    <th>配送先</th>
+       <td><%= link_to public_addresses_path, class: "btn btn-info" do %>一覧を見る
+           <% end %>
+       </td>
+  </tr>
+  <tr>
+    <th>注文履歴</th>
+       <td><%= link_to public_orders_path, class: "btn btn-info" do %>一覧を見る
+           <% end %>
+       </td>
+  </tr>
+
+<table>

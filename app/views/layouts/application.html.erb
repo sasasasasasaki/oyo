@@ -13,16 +13,15 @@
   <body>
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-      <% if admin_signed_in? %>
+      <% if customer_signed_in? %>
 
           <li>About</li>
           <li>商品一覧</li>
           <li>新規登録</li>
           <li><%= link_to "ログアウト" ,destroy_admin_session_path, method: :delete %></li>
           <li><%= link_to "会員ログアウト" ,destroy_customer_session_path, method: :delete %></li>
-          
+      
       <% else %>
-
           <li>商品一覧</li>
           <li>会員一覧</li>
           <li>注文履歴一覧</li>
