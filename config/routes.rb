@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :new, :show, :complete, :comfirm, :create]
     resources :cart_items, only: [:index, :create, :update, :destroy, :destroy_all]
     resources :customers, only: [:index, :edit, :show, :update, :destroy]
+    resources :items, only: [:show,:index]
     end
+
 
 
   # 顧客用

@@ -9,6 +9,7 @@ class Admin::GenresController < ApplicationController
 
   def index
     @genres = Genre.all
+    @genre = Genre.new
   end
 
   def edit
@@ -20,7 +21,7 @@ class Admin::GenresController < ApplicationController
 
     if @genre.update(genre_params)
     redirect_to admin_genres_path
-    flash[:alert] = "編集完了"
+    flash[:alert] = "新規登録完了"
 
     else
       render :edit

@@ -5,24 +5,24 @@
   <h4>会員の方はこちらからログイン</h4>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
+
   <table>
     <tr>
      <th><%= f.label :メールアドレス %></th>
      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
     <tr>
-      
+
     <tr>
       <th><%= f.label :パスワード %></th>
       <td><%= f.password_field :password, autocomplete: "current-password" %></td>
-  
+
       <tr>
         <td><%= f.submit "ログイン" ,class:"btn btn-info"%>
         </td><% end %>
       </tr>
 
   </table>
-  
+
   <h5>会員登録がお済みでない方</h5>
-  
+
   <p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行なってください。</p>

@@ -2,7 +2,8 @@ class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
   def show
-    @customer = Customer.find_by(id: params[:id])
+    @customers = Customer.all
+    @customer = Customer.find(params[:id])
 
 
   end

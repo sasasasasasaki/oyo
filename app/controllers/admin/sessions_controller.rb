@@ -7,9 +7,9 @@ class Admin::SessionsController < Devise::SessionsController
 
     def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.is_a?(Admin)
-      admin_homes_top_path
+      admin_items_path
     else
-      root_path
+      admin_session_path
     end
 
     end

@@ -1,3 +1,3 @@
 class Genre < ApplicationRecord
-  has_many :i, dependent: :destroy
+  has_many :item, dependent: :destroy
 end
