@@ -61,3 +61,5 @@ gem 'devise'
 gem 'autonumeric-rails'
 
 gem 'kaminari'
+
+gem "enum_help"
