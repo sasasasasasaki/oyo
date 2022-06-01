@@ -1,2 +1,44 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+
+<h2>ショッピングカート</h2>
+<%= link_to destroy_all_public_cart_items_path,method: :delete, "data-confirm" => "空にしますか？" ,class:"btn btn-danger" do %>カートを空にする
+              <% end %>
+<table>
+  <thead>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>個数</th>
+      <th>小計(税込)</th>
+  </thead>
+  <tbody>
+
+<% if current_customer.cart_items.present? %>
+  <% @cart.each do |cart_item| %>
+      <tr>
+          <td><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.with_tax_price %>円</td>
+          <td><%= cart_item.amount %>個</td>
+          <td><%= cart_item.subtotal %>円</td>
+          <td><%= link_to public_cart_item_path(cart_item.id) ,method: :delete, "data-confirm" => "削除しますか？" ,class:"btn btn-danger" do %>削除する
+              <% end %></td>
+      </tr>
+
+<% @total += cart_item.subtotal %>
+
+  <% end %>
+
+ <% end %>
+  </tbody>
+</table>
+
+<h4>合計:<%= @total %></h4>
+
+ <div><%= link_to public_items_path,class:"btn btn-info" do %>買い物を続ける
+              <% end %>
+ </div>
+
+
+
+ <div><%= link_to new_public_order_path,class:"btn btn-success" do %>情報入力に進む
+              <% end %>
+ </div>
