@@ -1,2 +1,20 @@
-<h1>Public::Orders#index</h1>
-<p>Find me in app/views/public/orders/index.html.erb</p>
+<h2>注文履歴</h2>
+<% @ordrs.each do |f| %>
+<table>
+  <tr>
+    <td><%= f.create %></td>
+    <td><%= fに紐づいた商品名一覧 %></td>
+    <td><%= f.postal_code %></td>
+    <td><%= f.address %></td>
+    <td><%= f.name %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.item.item.name %></td>
+    <td><%= f.price %></td>
+    <td><%= f.amount %></td>
+    <td></td>
+  </tr>
+<% end %>
+</table>
+

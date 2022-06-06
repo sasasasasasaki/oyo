@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
 
   has_one_attached :image
 
-  has_many :oders
+  has_many :orders
 
   has_many :cart_items
 
@@ -15,8 +15,8 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
-  
+
+
 def address_display
   '〒' + postal_code + ' ' + address + ' ' + first_name + last_name
 end

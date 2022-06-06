@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get 'homes/about'
     patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    get 'orders/complete'
     resources :orders, only: [:index, :new, :show, :complete, :create] do
      collection do
        post :confirm
