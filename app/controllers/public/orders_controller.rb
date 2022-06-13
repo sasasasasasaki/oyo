@@ -1,12 +1,13 @@
 class Public::OrdersController < ApplicationController
   def index
     @orders = current_customer.orders
-    
+
   end
 
   def confirm
     @order = current_customer.orders.new(order_params)
     @cart_item = current_customer.cart_items
+    @order.shipping_cost= 800
     @total = 0
 
     if Order.payment_methods_i18n[:credit_card]
@@ -42,22 +43,24 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @cart_item = current_customer.cart_items
+    @cart_items = current_customer.cart_items
     @order = current_customer.orders.new(order_params)
-    
+    @order.save
+
     @cart_items.each do |f|
      @order_detail = OrderDetail.new
-    
+
      @order_detail.item_id = f.item_id
-     @order_detail.item_id = f.order_id
-     @order_detail.item_id = f.price
-     @order_detail.item_id = f.amount
-     @order_detail.item_id = f.making_status
+     @order_detail.amount = f.amount
+     @order_detail.price = f.item.with_tax_price
+     @order_detail.making_status = 1
+     @order_detail.order_id = @order.id
      @order_detail.save
     end
-    
-    @order.save
-    
+
+    @cart = current_customer.cart_items
+    @cart.destroy_all
+
     redirect_to public_orders_complete_path
   end
 
@@ -68,6 +71,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find(params[:id])
+
   end
 
   def complete
