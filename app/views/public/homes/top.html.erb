@@ -1,7 +1,7 @@
 <%=   flash[:alert]  %>
 
 <div class="container">
-  
+
   <div class="col-md-7">
   <div class="shadow- p-5 mb-1 bg-light">
    <h4>ようこそ、ながのCakeへ！</h4>
@@ -11,8 +11,17 @@
        </p>
   </div>
   </div>
-  
+
   <h2>新着商品</h2>
-  
-  
+
+  <table>
+    <% @new_items.each do |new_item| %>
+     <th><%= image_tag new_item.image, size: "100x100" %></th>
+
+     <td><%= new_item.name %><td>
+
+  <% end %>
+  </table>
+
+
 </div>
